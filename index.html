@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vittorio Pippi - CV</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --text-main: #2b2b2b;
+            --text-muted: #6c757d;
+            --highlight-bg: #e9ecef;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main);
+            background-color: #f8f9fa;
+            line-height: 1.5;
+        }
+
+        /* Container designed to emulate a clean A4 resume sheet */
+        .cv-container {
+            max-width: 900px;
+            background-color: #ffffff;
+            margin: 40px auto;
+            padding: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+
+        /* Name Header */
+        h1.name {
+            font-weight: 500;
+            font-size: 1.43rem;
+            color: #111111;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .contact-info a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .contact-info a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        /* Section Headings */
+        h2.section-title {
+            font-weight: 400;
+            font-size: 1.43rem;
+            color: #111111;
+            margin-top: 2.2rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        /* Timeline / Alignment Styles */
+        .cv-row {
+            margin-bottom: 0.8rem;
+        }
+
+        .cv-left-col {
+            font-size: 0.92rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            text-align: right;
+            padding-right: 8px;
+            margin-top: 0;
+        }
+
+        .cv-right-col {
+            border-left: 5px solid #dee2e6;
+            padding-left: 8px;
+            padding-bottom: 2px;
+        }
+
+        /* Text Customizations */
+        .cv-entry-title {
+            font-weight: 400;
+            font-size: 0.92rem;
+            color: #111111;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        
+        .cv-entry-desc {
+            font-size: 0.92rem;
+            color: #3f3f3f;
+            font-weight: 300;
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            background-color: var(--highlight-bg);
+            padding: 1px 1px;
+            border-radius: 0;
+            font-weight: 300;
+        }
+
+
+        /* Publication links */
+        .pub-high, .pub-low {
+            position: relative;
+        }
+
+        .pub-high { --bar-highlight: rgba(173, 46, 146, 0.15); }
+        .pub-low { --bar-highlight: rgba(194, 155, 200, 0.25); }
+
+        .cv-entry-title a {
+            color: #111111;
+            text-decoration: none;
+            padding: 1px 1px;
+            border-radius: 0;
+            background: linear-gradient(to right, var(--bar-highlight) 0%, var(--bar-highlight) 100%) no-repeat left;
+            background-size: 0% 100%;
+            transition: background-size 0.3s ease;
+        }
+
+        .cv-entry-title a::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .pub-high:hover .cv-entry-title a,
+        .pub-low:hover .cv-entry-title a {
+            background-size: 100% 100%;
+            color: #111111;
+        }
+
+        /* Section color classes: high = dark/vibrant, mid = medium, low = light */
+        /* Work Experience - Green */
+        .work-high { --bar-color: #0E9547; }
+        .work-mid { --bar-color: #A2CB39; }
+        .work-low { --bar-color: #DBE68D; }
+
+        /* Publications - Purple */
+        .pub-high { --bar-color: #AD2E92; }
+        .pub-low { --bar-color: #C29BC8; }
+
+        /* Education - Orange */
+        .edu-high { --bar-color: #EE5A25; }
+        .edu-mid { --bar-color: #F79F20; }
+        .edu-low { --bar-color: #FFC414; }
+
+        /* Training - Blue */
+        .train-high { --bar-color: #4A4EA1; }
+        .train-mid { --bar-color: #75A7D9; }
+
+        .work-high .cv-right-col, .work-mid .cv-right-col, .work-low .cv-right-col,
+        .pub-high .cv-right-col, .pub-low .cv-right-col,
+        .edu-high .cv-right-col, .edu-mid .cv-right-col, .edu-low .cv-right-col,
+        .train-high .cv-right-col, .train-mid .cv-right-col {
+            border-color: var(--bar-color);
+        }
+
+        .oral-label {
+            display: block;
+        }
+
+        /* Responsive refinements */
+        @media (max-width: 767.98px) {
+            .cv-container {
+                margin: 10px;
+                padding: 20px;
+            }
+            .cv-left-col {
+                text-align: left;
+                padding-right: 0;
+                margin-bottom: 4px;
+            }
+            .cv-right-col {
+                border-left: 5px solid #dee2e6;
+                padding-left: 12px;
+                padding-bottom: 0.6rem;
+            }
+            .oral-label {
+                display: inline;
+            }
+        }
+
+        /* High-quality PDF export print rules */
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #000000;
+            }
+            .cv-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
+            }
+            a {
+                text-decoration: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="cv-container">
+
+    <!-- Header / Contact Info -->
+    <header class="mb-4">
+        <h1 class="name">Vittorio Pippi</h1>
+        <div class="contact-info d-flex flex-column gap-2">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-envelope text-secondary me-2 fs-5"></i>
+                <a href="mailto:vittorio@vpippi.com">vittorio@vpippi.com</a>
+            </div>
+            <div class="d-flex align-items-center">
+                <i class="bi bi-envelope text-secondary me-2 fs-5"></i>
+                <a href="mailto:vittorio.pippi@unimore.it">vittorio.pippi@unimore.it</a>
+            </div>
+            <div class="d-flex align-items-center">
+                <i class="bi bi-linkedin text-secondary me-2 fs-5"></i>
+                <a href="https://www.linkedin.com/in/vittorio-pippi/" target="_blank">https://www.linkedin.com/in/vittorio-pippi/</a>
+            </div>
+            <div class="d-flex align-items-center">
+                <!-- Scholar Hat Icon representing Google Scholar link -->
+                <i class="bi bi-mortarboard text-secondary me-2 fs-5"></i>
+                <a href="https://scholar.google.com/citations?user=OHmt2vUAAAAJ" target="_blank">https://scholar.google.com/citations?user=OHmt2vUAAAAJ</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Technical Summary -->
+    <section class="mb-4">
+        <h2 class="section-title">Technical Summary</h2>
+        <div class="row g-0">
+            <div class="col-12">
+                <p class="cv-entry-desc" style="font-size: 0.92rem; line-height: 1.6;">
+                    Expert in <span class="highlight">Document AI</span> and synthetic data generation, with a focus on <span class="highlight">vision-language models</span>, transformers, and diffusion models. Proficient in <span class="highlight">PyTorch</span>, <span class="highlight">Hugging Face</span>, and deploying large-scale multimodal systems.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section class="mb-4">
+        <h2 class="section-title">Work Experience</h2>
+
+        <!-- Item 0 -->
+        <div class="row g-0 cv-row work-high">
+            <div class="col-md-3 cv-left-col">
+                Mar 2026 - Aug 2026
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">Research Scientist Intern</div>
+                <div class="cv-entry-desc">
+                    Design Handwritten Text Generation models to improve downstream HTR for VLLMs<br>
+                    Docling Team at IBM, Zürich (Switzerland)
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 1 -->
+        <div class="row g-0 cv-row work-high">
+            <div class="col-md-3 cv-left-col">
+                May 2024 - Nov 2024
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">Applied Scientist Intern</div>
+                <div class="cv-entry-desc">
+                    Research on Multimodal Large Language Models<br>
+                    CVNA at Amazon, Berlin (Germany)
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="row g-0 cv-row work-high">
+            <div class="col-md-3 cv-left-col">
+                Feb 2020 - Jun 2025
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">Chief Technical Officer</div>
+                <div class="cv-entry-desc">
+                    Programmed XR/VR applications in C# in Unity on HoloLens 2, Magic Leap 2, and Meta Quest 2/3<br>
+                    PPXR, Foligno (Italy)
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="row g-0 cv-row work-mid">
+            <div class="col-md-3 cv-left-col">
+                Apr 2021 - Jun 2021
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">Research Assistant</div>
+                <div class="cv-entry-desc">
+                    Study and analysis of 3D images in the medical field<br>
+                    Ostfalia University, Wolfenbüttel (Germany)
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="row g-0 cv-row work-mid">
+            <div class="col-md-3 cv-left-col">
+                Apr 2020 - Dec 2020
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">Research Intern</div>
+                <div class="cv-entry-desc">
+                    Development of Self-supervised pre-training strategies for object detection<br>
+                    AImageLab at Enzo Ferrari Engineering Department, Modena (Italy)
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="row g-0 cv-row work-low">
+            <div class="col-md-3 cv-left-col">
+                Jan 2020 - Jun 2020
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">Freelance Website Developer</div>
+                <div class="cv-entry-desc">
+                    Development of websites and webapps, made in Django<br>
+                    Studionilo, Bologna (Italy) - Tectra, Udine (Italy)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selected Publications -->
+    <section class="mb-4">
+        <h2 class="section-title">Selected Publications</h2>
+
+        <!-- Pub 1 -->
+        <div class="row g-0 cv-row pub-high">
+            <div class="col-md-3 cv-left-col">
+                CVPR 2025
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=OHmt2vUAAAAJ&citation_for_view=OHmt2vUAAAAJ:ufrVoPGSRksC" target="_blank">Zero-Shot Styled Text Image Generation, but Make It Autoregressive</a></div>
+                <div class="cv-entry-desc">
+                    <span class="highlight">V. Pippi</span>, F. Quattrini, S. Cascianelli, A. Tonioni, R. Cucchiara
+                </div>
+            </div>
+        </div>
+
+        <!-- Pub 2 -->
+        <div class="row g-0 cv-row pub-high">
+            <div class="col-md-3 cv-left-col">
+                CVPR 2023
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=OHmt2vUAAAAJ&citation_for_view=OHmt2vUAAAAJ:9yKSN-GCB0IC" target="_blank">Handwritten Text Generation from Visual Archetypes</a></div>
+                <div class="cv-entry-desc">
+                    <span class="highlight">V. Pippi</span>, S. Cascianelli, R. Cucchiara
+                </div>
+            </div>
+        </div>
+
+        <!-- Pub 3 (With Alert Label) -->
+        <div class="row g-0 cv-row pub-high">
+            <div class="col-md-3 cv-left-col">
+                <span data-bs-toggle="tooltip" data-bs-placement="top" title="Due to company policies, I am not allowed to submit this paper to any conference">ARXIV 2025*</span>
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=OHmt2vUAAAAJ&citation_for_view=OHmt2vUAAAAJ:WF5omc3nYNoC" target="_blank">ToFu: Visual Tokens Reduction via Fusion for Multi-modal, Multi-patch, Multi-image Tasks</a></div>
+                <div class="cv-entry-desc">
+                    <span class="highlight">V. Pippi</span>, M. Guillaumin, S. Cascianelli, R. Cucchiara, M. Jaritz, L. Bazzani
+                </div>
+            </div>
+        </div>
+
+        <!-- Pub 4 -->
+        <div class="row g-0 cv-row pub-high">
+            <div class="col-md-3 cv-left-col">
+                TPAMI 2024
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=OHmt2vUAAAAJ&citation_for_view=OHmt2vUAAAAJ:Y0pCki6q_DkC" target="_blank">VATr++: Choose Your Words Wisely for Handwritten Text Generation</a></div>
+                <div class="cv-entry-desc">
+                    B. Vanherle, <span class="highlight">V. Pippi</span>, S. Cascianelli, N. Michiels, F. Van Reeth, R. Cucchiara
+                </div>
+            </div>
+        </div>
+
+        <!-- Pub 5 -->
+        <div class="row g-0 cv-row pub-high">
+            <div class="col-md-3 cv-left-col">
+                ECCV 2024
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=OHmt2vUAAAAJ&citation_for_view=OHmt2vUAAAAJ:eQOLeE2rZwMC" target="_blank">Semantically Coherent Montages by Merging and Splitting Diffusion Paths</a></div>
+                <div class="cv-entry-desc">
+                    F. Quattrini, <span class="highlight">V. Pippi</span>, S. Cascianelli, R. Cucchiara
+                </div>
+            </div>
+        </div>
+
+        <!-- Pub 6 (With Oral Label) -->
+        <div class="row g-0 cv-row pub-low">
+            <div class="col-md-3 cv-left-col">
+                <span>ICDAR 2024</span> <span class="oral-label" style="color: #C29BC8; font-size: 0.75rem; font-weight: 600;">Oral</span>
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=OHmt2vUAAAAJ&citation_for_view=OHmt2vUAAAAJ:W7OEmFMy1HYC" target="_blank">Binarizing Documents by Leveraging both Space and Frequency</a></div>
+                <div class="cv-entry-desc">
+                    F. Quattrini, <span class="highlight">V. Pippi</span>, S. Cascianelli, R. Cucchiara
+                </div>
+            </div>
+        </div>
+
+        <!-- Pub 7 (With Oral Label) -->
+        <div class="row g-0 cv-row pub-low">
+            <div class="col-md-3 cv-left-col">
+                <span>ICDAR 2023</span> <span class="oral-label" style="color: #C29BC8; font-size: 0.75rem; font-weight: 600;">Oral</span>
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=OHmt2vUAAAAJ&citation_for_view=OHmt2vUAAAAJ:qjMakFHDy7sC" target="_blank">How to Choose Pretrained Handwriting Recognition Models for Single Writer Fine-Tuning</a></div>
+                <div class="cv-entry-desc">
+                    <span class="highlight">V. Pippi</span>, S. Cascianelli, C. Kermorvant, R. Cucchiara
+                </div>
+            </div>
+        </div>
+
+        <!-- Pub 8 -->
+        <div class="row g-0 cv-row pub-low">
+            <div class="col-md-3 cv-left-col">
+                BMVC 2023
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=OHmt2vUAAAAJ&citation_for_view=OHmt2vUAAAAJ:hqOjcs7Dif8C" target="_blank">HWD: A Novel Evaluation Score for Styled Handwritten Text Generation</a></div>
+                <div class="cv-entry-desc">
+                    <span class="highlight">V. Pippi</span>, F. Quattrini, S. Cascianelli, R. Cucchiara
+                </div>
+            </div>
+        </div>
+
+        <!-- Pub 9 -->
+        <div class="row g-0 cv-row pub-low">
+            <div class="col-md-3 cv-left-col">
+                PRL 2022
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=OHmt2vUAAAAJ&citation_for_view=OHmt2vUAAAAJ:2osOgNQ5qMEC" target="_blank">Evaluating Synthetic Pre-Training for Handwriting Processing Tasks</a></div>
+                <div class="cv-entry-desc">
+                    <span class="highlight">V. Pippi</span>, S. Cascianelli, L. Baraldi, R. Cucchiara
+                </div>
+            </div>
+        </div>
+
+        <!-- Pub 10 -->
+        <div class="row g-0 cv-row pub-low">
+            <div class="col-md-3 cv-left-col">
+                ICPR 2022
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=OHmt2vUAAAAJ&citation_for_view=OHmt2vUAAAAJ:d1gkVwhDpl0C" target="_blank">The LAM dataset: a novel benchmark for line-level handwritten text recognition</a></div>
+                <div class="cv-entry-desc">
+                    S. Cascianelli, <span class="highlight">V. Pippi</span>, M. Maarand, M. Cornia, L. Baraldi, C. Kermorvant, R. Cucchiara
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="mb-4">
+        <h2 class="section-title">Education</h2>
+
+        <!-- Ed 1 -->
+        <div class="row g-0 cv-row edu-high">
+            <div class="col-md-3 cv-left-col">
+                Nov 2021 - Jun 2025
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">National PhD student in AI for Society</div>
+                <div class="cv-entry-desc">
+                    University of Pisa - University of Modena and Reggio Emilia (host)<br>
+                    Project title: Generative and Discriminative AI for Document and Text Images<br>
+                    Tutors: Prof. Rita Cucchiara, Dr. Silvia Cascianelli
+                </div>
+            </div>
+        </div>
+
+        <!-- Ed 2 -->
+        <div class="row g-0 cv-row edu-mid">
+            <div class="col-md-3 cv-left-col">
+                Sep 2018 - Dec 2020
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">Master of Science in Computer Engineering</div>
+                <div class="cv-entry-desc">
+                    University of Modena and Reggio Emilia
+                </div>
+            </div>
+        </div>
+
+        <!-- Ed 3 -->
+        <div class="row g-0 cv-row edu-low">
+            <div class="col-md-3 cv-left-col">
+                Sep 2015 - Oct 2018
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">Bachelor of Science in Computer Engineering</div>
+                <div class="cv-entry-desc">
+                    University of Modena and Reggio Emilia
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Studies and Training Experiences -->
+    <section class="mb-4">
+        <h2 class="section-title">Studies and Training Experiences</h2>
+
+        <!-- Train 1 -->
+        <div class="row g-0 cv-row train-high">
+            <div class="col-md-3 cv-left-col">
+                Sep 2023
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">ELLIS Summer School on Large-Scale AI for Research and Industry</div>
+                <div class="cv-entry-desc">
+                    University of Modena and Reggio Emilia
+                </div>
+            </div>
+        </div>
+
+        <!-- Train 2 -->
+        <div class="row g-0 cv-row train-high">
+            <div class="col-md-3 cv-left-col">
+                Jul 2023
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">ICVSS 2023 - International Computer Vision Summer School</div>
+                <div class="cv-entry-desc">
+                    University of Catania
+                </div>
+            </div>
+        </div>
+
+        <!-- Train 3 -->
+        <div class="row g-0 cv-row train-high">
+            <div class="col-md-3 cv-left-col">
+                Jun 2022
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">National PhD student in AI for Society - Summer School</div>
+                <div class="cv-entry-desc">
+                    University of Pisa
+                </div>
+            </div>
+        </div>
+
+        <!-- Train 4 -->
+        <div class="row g-0 cv-row train-mid">
+            <div class="col-md-3 cv-left-col">
+                Sep 2019 - Feb 2020
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">European Union Erasmus Program</div>
+                <div class="cv-entry-desc">
+                    Akademia Górniczo-Hutnicza, Krakow (Poland)
+                </div>
+            </div>
+        </div>
+
+        <!-- Train 5 -->
+        <div class="row g-0 cv-row train-mid">
+            <div class="col-md-3 cv-left-col">
+                Sep 2019
+            </div>
+            <div class="col-md-9 cv-right-col">
+                <div class="cv-entry-title">European Union Erasmus+ "BEAST - BE Aware STudent"</div>
+                <div class="cv-entry-desc">
+                    Rzeszów University of Technology, Rzeszów (Poland)
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- Bootstrap JS (Optional but included for full suite capability) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
+</script>
+</body>
+</html>
